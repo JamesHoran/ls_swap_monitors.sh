@@ -30,3 +30,13 @@ updated_primary=$(xrandr --listmonitors | grep '*' | awk '{print $4}')
 
 # Print updated state
 echo "Updated Primary Monitor: $updated_primary"
+
+# Kill any existing redshift processes
+pkill redshift
+
+# Add a small delay to ensure the monitor settings are applied
+sleep 1
+
+# Reset and set the color temperature using redshift
+redshift -X
+redshift -O 2000K &
